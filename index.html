@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analog Clock</title>
+    <style>
+        body{
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            background-color:aquamarine;
+        }
+        .or{
+            margin-top:100px;
+            height:400px;
+            width:400px;
+            border:4px solid black;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            background-color:black;
+
+        }
+        .ir{
+            height:370px;
+            width:370px;
+            border:3px solid blueviolet;
+            border-radius:50%;
+            padding :5px;
+            display:flex;
+            align-items: center;
+            justify-content:center;
+            background-image:url(clock.png);
+            background-position-x:-102px ;
+            background-position-y:-78px;
+            background-color:rgb(160, 185, 185);
+           
+        }
+        .sechand{
+            width: 2px;
+    height: 150px;
+    background-color: black;
+    z-index: 14;
+    margin-left: -2px;
+    margin-top: -149px;
+    transform-origin:bottom;
+}
+.hhand{
+    width: 5px;
+    height: 110px;
+    background-color: black;
+    z-index: 9;
+    margin-left: -10px;
+    margin-top: -107px;
+    transform-origin:bottom;
+}
+.point{
+    border: 3px solid black;
+    border-radius: 50%;
+    width: 3px;
+    height: 10px;
+    background-color: black;
+    
+}
+.minhand{
+    width: 3px;
+    height: 130px;
+    background-color: black;
+    z-index: 12;
+    margin-left: -4px;
+    margin-top: -129px;
+    transform-origin:bottom;
+
+}
+
+
+
+
+        
+    </style>
+</head>
+<body>
+  <div class="or">
+    <div class="ir">
+        <div class="point"></div>
+        <div class="hhand"></div>
+        <div class="minhand"></div>
+        <div class="sechand" id="sechand"></div>
+        
+
+    </div>
+  </div>  
+<script>
+
+ hhand=document.querySelector('.hhand');
+ minhand=document.querySelector('.minhand');
+ rotatime=()=>{
+     let secs=new Date().getSeconds();
+     let mins=new Date().getMinutes();
+     let hours=new Date().getHours();
+     console.log(secs);
+     sechand=document.querySelector('.sechand');
+     hhand=document.querySelector('.hhand');
+ minhand=document.querySelector('.minhand');
+    sechand.style.transform=`rotate(${secs*6}deg)`
+    hhand.style.transform=`rotate(${(hours*30)+mins*(1/2)+secs*(1/120)}deg)`
+    minhand.style.transform=`rotate(${mins*6+secs*(1/120)}deg)`
+     setTimeout(rotatime,1000);
+ }
+rotatime();
+</script>
+
+</body>
+</html>
